@@ -1,7 +1,7 @@
 const Dialog = ({ data }) => {
     return (
-        <div className="flex bg-neutral-950 mb-2 p-1 rounded-lg">
-            <div className="m-auto">
+        <div className="flex mb-1  hover:bg-neutral-700">
+            <div className="m-auto ml-2">
                 <img
                     src={data.avatar}
                     alt="avatar"
@@ -11,11 +11,11 @@ const Dialog = ({ data }) => {
                     className="rounded-[50%]"
                 />
             </div>
-            <div className="flex flex-col gap-y-2 ml-2 overflow-hidden dialog-bg w-full">
-                <h2 className="text-lg  font-semibold overflow-hidden">
+            <div className="flex flex-col overflow-hidden dialog-bg w-full">
+                <h2 className="text-lg ml-2 font-semibold overflow-hidden">
                     {data.name}
                 </h2>
-                <div className="overflow-hidden w-full text-ellipsis whitespace-nowrap">
+                <div className="ml-2 overflow-hidden w-full text-ellipsis whitespace-nowrap">
                     {data.text}
                 </div>
             </div>

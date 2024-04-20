@@ -1,27 +1,27 @@
-import { FiPhoneCall, FiSearch, FiMoreVertical } from "react-icons/fi";
+import Button from "./Button";
+import man from "./man.png";
 
 const Header = () => {
-  return (
-    <div className="header">
-      <a
-        href=""
-        className="items-center text-2xl font-semibold text-neutral-400 font-mono "
-      >
-        ChatForMe
-      </a>
-      {/* <div className="flex justify-between w-[100px]">
-        <a className="text-white " href="">
-          <FiPhoneCall size={20} />
-        </a>
-        <a className="text-white" href="">
-          <FiSearch size={20} />
-        </a>
-        <a className="text-white" href="">
-          <FiMoreVertical size={20} />
-        </a>
-      </div> */}
-    </div>
-  );
+    return (
+        <header className="flex justify-between">
+            <div>
+                <h2 className="text-2xl font-bold">OnlyChat alfa</h2>
+            </div>
+            <div className="flex justify-between">
+                {/* <div>
+                    <Button className="bg-transparent text-neutral-300 font-medium">
+                        Register
+                    </Button>
+                </div>
+                <div>
+                    <Button className="bg-white px-6 py-2">Log in</Button>
+                </div> */}
+                <div>
+                    <Button className="ml-2 bg-white px-6 py-2">Logout</Button>
+                </div>
+            </div>
+        </header>
+    );
 };
 
 export default Header;
