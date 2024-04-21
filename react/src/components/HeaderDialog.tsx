@@ -1,7 +1,7 @@
 import { FiPhoneCall, FiSearch, FiMoreVertical } from "react-icons/fi";
 import avatar from "./user.png";
 
-const HeaderDialog = () => {
+const HeaderDialog = ({ data }) => {
     return (
         <div className="flex justify-between">
             <div className="flex items-center h-full">
@@ -9,8 +9,8 @@ const HeaderDialog = () => {
                     <img src={avatar} alt="" width={40} />
                 </div>
                 <div className="ml-3">
-                    <p>name user</p>
-                    <p>info user</p>
+                    <p>{data.name}</p>
+                    <p>{data.text}</p>
                 </div>
             </div>
             <div className="flex justify-end z-11">
