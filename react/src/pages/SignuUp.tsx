@@ -20,7 +20,7 @@ const SignUp = () => {
             password_confirmation: passwordConfirmationRef.current.value,
         };
         axiosClient
-            .post("/register", payload)
+            .post("/signup", payload)
             .then(({ data }) => {
                 console.log(data);
             })

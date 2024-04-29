@@ -52,13 +52,13 @@ const Login = () => {
                         className="mb-5 mt-5"
                         placeholder="Email"
                         type="email"
-                        value="test@yandex.ri"
+                        value="test@test.ru"
                     />
                     <Input
                         ref={passwordRef}
                         className="mb-5 mt-5"
-                        placeholder="Password"
-                        value="229229112"
+                        placeholder="password"
+                        value="DEsanta2281S+"
                     />
                     <button className="w-full rounded-full bg-green-500 border border-transparent px-3 py-3 disabled:cursor-not-allowed disabled:opacity-50 text-black font-bold hover:opacity-75 transition px-6 py-2 ">
                         Login
