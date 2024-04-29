@@ -20,7 +20,7 @@ const SignUp = () => {
             password_confirmation: passwordConfirmationRef.current.value,
         };
         axiosClient
-            .post("/signup", payload)
+            .post("/register", payload)
             .then(({ data }) => {
                 console.log(data);
             })
@@ -33,7 +33,7 @@ const SignUp = () => {
     };
 
     return (
-        <div className="max-w-[450px] animate__animated animate__fadeIn animate__delay-1s">
+        <div className="max-w-[450px] animate__animated animate__fadeIn animate__delay-1s mt-10">
             <div className="w-full">
                 <h2 className="text-4xl text-center mb-5">Hi Welcome To The</h2>
                 <h2 className="text-2xl font-bold text-center mb-5 sm:text-6xl">
@@ -70,7 +70,9 @@ const SignUp = () => {
                         type="password"
                         ref={passwordConfirmationRef}
                     />
-                    <Button className=" px-6 py-2 ">Sign Up</Button>
+                    <button className="w-full rounded-full bg-green-500 border border-transparent px-3 py-3 disabled:cursor-not-allowed disabled:opacity-50 text-black font-bold hover:opacity-75 transition px-6 py-2 ">
+                        Sign Up
+                    </button>
                     <div className="mt-5 mb-5">
                         <p>
                             Already have an account?

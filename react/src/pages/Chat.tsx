@@ -5,6 +5,7 @@ import HeaderDialog from "../components/HeaderDialog";
 import Input from "../components/Input";
 import avatar from "./user.png";
 import { IoSendSharp } from "react-icons/io5";
+import MyMenu from "../components/MyMenu";
 
 const dialogs = [
     { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
@@ -29,11 +30,12 @@ const Chat = () => {
     };
 
     return (
-        <div className="flex flex-col h-[85vh] mt-5">
+        <div className="flex flex-col h-[100vh]">
             <div className="bg-neutral-800  overflow-y-auto flex">
-                <div className="flex flex-col max-w-[350px]  w-full">
-                    <div className="p-3">
+                <div className="flex flex-col md:max-w-[350px]  w-full">
+                    <div className="p-3 flex justify-between ">
                         <Input placeholder="Search Dialog" />
+                        <MyMenu />
                     </div>
 
                     <div className="mt-3 -[79vh] w-full min-w-[320px] overflow-auto">
@@ -51,21 +53,27 @@ const Chat = () => {
                         ))}
                     </div>
                 </div>
-                <div className="flex-auto bg-neutral-900 h-full p-3 relative overflow-hidden">
+                <div className="flex-auto bg-neutral-900 h-full p-3 relative overflow-hidden hidden md:block">
                     {selectedDialog ? (
-                        <div className="flex flex-col h-full">
+                        <div className="flex flex-col h-full ">
                             <HeaderDialog data={dialogs} />
-                            <div className=" overflow-y-auto h-[85%] mt-2">
-                                <div className="flex justify-start">
-                                    <div className="flex flex-col">
-                                        <div>net eto ne pravda</div>
-                                        <p className="text-xs">time 22^00</p>
+                            <div className=" overflow-y-auto h-[85%] mt-2 flex flex-col-reverse ">
+                                <div>
+                                    <div className="flex justify-start items-end ">
+                                        <div className="flex flex-col">
+                                            <div>net eto ne pravda</div>
+                                            <p className="text-xs">
+                                                time 22:00
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="flex justify-end">
-                                    <div className="flex flex-col">
-                                        <div>net eto ne pravda</div>
-                                        <p className="text-xs">time 22^00</p>
+                                    <div className="flex justify-end items-end">
+                                        <div className="flex flex-col">
+                                            <div>net eto ne pravda</div>
+                                            <p className="text-xs">
+                                                time 22:00
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

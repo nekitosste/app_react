@@ -5,9 +5,9 @@ import Header from "./Header";
 
 const DefaultLayout = () => {
     return (
-        <div className={twMerge(`h-fit bg-gradient-to-b from-emerald-800 p-6`)}>
+        <div className={twMerge(`h-fit bg-gradient-to-b from-emerald-800`)}>
             <div className="">
-                <Header />
+                {/* <Header /> */}
                 <main>
                     <Outlet />
                 </main>

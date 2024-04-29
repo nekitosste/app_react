@@ -5,9 +5,9 @@ import { twMerge } from "tailwind-merge";
 
 const GuestLayout = () => {
     return (
-        <div className={twMerge(`h-fit bg-gradient-to-b from-emerald-800 p-6`)}>
+        <div className={twMerge(`h-fit bg-gradient-to-b from-emerald-800 `)}>
             <div className="container mx-auto">
-                <Header />
+                {/* <Header /> */}
                 <main className="flex text-center justify-center">
                     <Outlet />
                 </main>
