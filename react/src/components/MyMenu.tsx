@@ -6,19 +6,33 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import axiosClient from "./../axios-client";
+import { useStateContext } from "../context/ContextProvider";
+import { Navigate } from "react-router-dom";
 
 export default function AccountMenu() {
+    const { token, setUser, setToken } = useStateContext();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
+        setAnchorEl(null);
+    };
+    if (!token) {
+        return <Navigate to="/login" />;
+    }
+    const onLogout = (ev: any) => {
+        ev.preventDefault();
+        axiosClient.post("/logout").then(() => {
+            setUser({});
+            setToken(null);
+        });
         setAnchorEl(null);
     };
     return (
@@ -97,7 +111,7 @@ export default function AccountMenu() {
                     </ListItemIcon>
                     Settings
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={onLogout}>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>

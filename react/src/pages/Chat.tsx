@@ -6,7 +6,7 @@ import Input from "../components/Input";
 import avatar from "./user.png";
 import { IoSendSharp } from "react-icons/io5";
 import MyMenu from "../components/MyMenu";
-
+import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 const dialogs = [
     { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
     { id: 2, avatar: avatar, text: "helow", name: "Alex Alex" },
@@ -32,7 +32,7 @@ const Chat = () => {
     return (
         <div className="flex flex-col h-[100vh]">
             <div className="bg-neutral-800  overflow-y-auto flex">
-                <div className="flex flex-col md:max-w-[350px]  w-full">
+                <div className="flex flex-col md:max-w-[380px]  w-full">
                     <div className="p-3 flex justify-between ">
                         <Input placeholder="Search Dialog" />
                         <MyMenu />
@@ -59,7 +59,7 @@ const Chat = () => {
                             <HeaderDialog data={dialogs} />
                             <div className=" overflow-y-auto h-[85%] mt-2 flex flex-col-reverse ">
                                 <div>
-                                    <div className="flex justify-start items-end ">
+                                    <div className="flex justify-start items-end">
                                         <div className="flex flex-col">
                                             <div>net eto ne pravda</div>
                                             <p className="text-xs">
@@ -84,9 +84,10 @@ const Chat = () => {
                                     className="flex-auto w-full"
                                     placeholder="Send text"
                                 />
-                                <Button className="w-[40px] ml-2">
-                                    <IoSendSharp />
-                                </Button>
+
+                                <button className="ml-2">
+                                    <IoSendSharp size={25} />
+                                </button>
                             </div>
                         </div>
                     ) : (

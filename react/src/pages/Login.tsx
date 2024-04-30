@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import { createRef } from "react";
+import { createRef, useState } from "react";
 import axiosClient from "./../axios-client";
+import { useStateContext } from "../context/ContextProvider";
 
 const Login = () => {
+    const { setUser, setToken } = useStateContext();
+    const [errors, setErrors] = useState(null);
     const emailRef = createRef();
     const passwordRef = createRef();
 
@@ -14,21 +17,21 @@ const Login = () => {
             email: emailRef.current.value,
             password: passwordRef.current.value,
         };
-        // setErrors(null);
+        setErrors(null);
         axiosClient
             .post("/login", payload)
             .then(({ data }) => {
-                // setUser(data.user);
-                // setToken(data.token);
+                setUser(data.user);
+                setToken(data.token);
             })
             .catch((err) => {
                 const response = err.response;
                 if (response && response.status === 422) {
                     if (response.data.errors) {
-                        // setErrors(response.data.errors);
+                        setErrors(response.data.errors);
                     } else {
                         setErrors({
-                            // email: [response.data.message],
+                            email: [response.data.message],
                         });
                     }
                 }
@@ -37,8 +40,10 @@ const Login = () => {
     return (
         <div className="max-w-[450px] animate__animated animate__fadeIn animate__delay-1s mt-10">
             <div className="w-full">
-                <h2 className="text-4xl text-center mb-5">Hi Welcome To The</h2>
-                <h2 className="text-2xl font-bold text-center mb-5 sm:text-6xl">
+                <h2 className="text-3xl sm:text-5xl text-center mb-5">
+                    Hi Welcome To The
+                </h2>
+                <h2 className="text-4xl font-bold text-center mb-5 sm:text-6xl">
                     ONLYCHAT
                 </h2>
             </div>

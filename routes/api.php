@@ -32,11 +32,3 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/address', [AddressController::class,'address'] );
-Route::post('/address/create', [AddressController::class,'create']);
-Route::get('/address/{id}', [AddressController::class,'show']);
-Route::delete('/address/{id}', [AddressController::class,'destroy']);
-Route::put('/address/{id}', [AddressController::class,'update']);
-
-
-Route::get('/search', [SearchController::class, 'index']);
