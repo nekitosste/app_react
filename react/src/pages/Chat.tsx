@@ -10,12 +10,12 @@ import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 const dialogs = [
     { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
     { id: 2, avatar: avatar, text: "helow", name: "Alex Alex" },
-    { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
+    { id: 3, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
+    { id: 4, avatar: avatar, text: "helow", name: "Alex Alex" },
+    { id: 5, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
     { id: 2, avatar: avatar, text: "helow", name: "Alex Alex" },
-    { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
-    { id: 2, avatar: avatar, text: "helow", name: "Alex Alex" },
-    { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
-    { id: 2, avatar: avatar, text: "helow", name: "Alex Alex" },
+    { id: 7, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
+    { id: 8, avatar: avatar, text: "helow", name: "Alex Alex" },
     { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
     { id: 2, avatar: avatar, text: "helow", name: "Alex Alex" },
     { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
@@ -56,7 +56,7 @@ const Chat = () => {
                 <div className="flex-auto bg-neutral-900 h-full p-3 relative overflow-hidden hidden md:block">
                     {selectedDialog ? (
                         <div className="flex flex-col h-full ">
-                            <HeaderDialog data={dialogs} />
+                            <HeaderDialog data={selectedDialog} />
                             <div className=" overflow-y-auto h-[85%] mt-2 flex flex-col-reverse ">
                                 <div>
                                     <div className="flex justify-start items-end">
