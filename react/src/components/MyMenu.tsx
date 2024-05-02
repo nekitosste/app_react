@@ -12,7 +12,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import axiosClient from "./../axios-client";
 import { useStateContext } from "../context/ContextProvider";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export default function AccountMenu() {
     const { token, setUser, setToken } = useStateContext();
@@ -92,12 +92,12 @@ export default function AccountMenu() {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-                <MenuItem onClick={handleClose}>
-                    <Avatar /> Profile
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <Avatar /> My account
-                </MenuItem>
+                <Link to="/profile">
+                    <MenuItem onClick={handleClose}>
+                        <Avatar /> Profile
+                    </MenuItem>
+                </Link>
+
                 <Divider />
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon>

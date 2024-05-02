@@ -6,6 +6,7 @@ import GuestLayout from "./components/GuestLayout";
 import SignUp from "./pages/SignuUp";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
         children: [
             { path: "/chat", element: <Chat /> },
             { path: "/dashboard", element: <Dashboard /> },
+            { path: "/profile", element: <Profile /> },
             { path: "/", element: <Navigate to="/chat" /> },
         ],
     },
