@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Button from "../components/Button";
 import Dialog from "../components/Dialog";
 import HeaderDialog from "../components/HeaderDialog";
 import Input from "../components/Input";
 import avatar from "./user.png";
 import { IoSendSharp } from "react-icons/io5";
 import MyMenu from "../components/MyMenu";
-import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
+
 const dialogs = [
     { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
     { id: 2, avatar: avatar, text: "helow", name: "Alex Alex" },
