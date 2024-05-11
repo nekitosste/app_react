@@ -7,6 +7,8 @@ import Input from "../components/Input";
 import avatar from "./user.png";
 import { IoSendSharp } from "react-icons/io5";
 import MyMenu from "../components/MyMenu";
+import EmojiPicker from "emoji-picker-react";
+import { FaRegFaceSmile } from "react-icons/fa6";
 
 const socket = io("http://localhost:3001");
 
@@ -26,7 +28,12 @@ const dialogs = [
 ];
 
 const Chat = () => {
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
     const [selectedDialog, setSelectedDialog] = useState(null);
+
+    const handleEmojiClick = (emoji) => {
+        setInputValue(inputValue + emoji);
+    };
 
     const handleDialogClick = (id) => {
         setSelectedDialog(id);
@@ -58,7 +65,11 @@ const Chat = () => {
                 console.error("Error:", error);
             });
     };
-
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            sendMessage();
+        }
+    };
     return (
         <div>
             <div className="flex flex-col h-[100vh]">
@@ -88,10 +99,10 @@ const Chat = () => {
                         {selectedDialog ? (
                             <div className="flex flex-col h-full ">
                                 <HeaderDialog data={selectedDialog} />
-                                <div className=" overflow-y-auto h-[85%] mt-2 flex flex-col-reverse ">
+                                <div className=" overflow-y-auto h-[85%] mt-2 flex flex-col-reverse relative">
                                     <div>
                                         <div className="flex justify-start items-end">
-                                            <div className="flex flex-col mt-4 mb-4">
+                                            <div className="flex flex-col mt-4 mb-4 ml-4">
                                                 <img
                                                     src={avatar}
                                                     alt=""
@@ -115,7 +126,7 @@ const Chat = () => {
                                                         (message, index) => (
                                                             <div
                                                                 key={index}
-                                                                className="mt-4 mb-4"
+                                                                className="mt-4 mb-4 mr-4"
                                                             >
                                                                 <div>
                                                                     <div className="text-end">
@@ -135,9 +146,18 @@ const Chat = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="absolute bottom-0 right-0">
+                                        {showEmojiPicker && (
+                                            <EmojiPicker
+                                                theme="dark"
+                                                autoFocusSearch={false}
+                                                onEmojiClick={handleEmojiClick}
+                                            />
+                                        )}
+                                    </div>
                                 </div>
 
-                                <div className="absolute bottom-0 right-0 mb-2 flex w-full p-4">
+                                <div className=" bottom-0 right-0 mb-2 flex w-full p-4 relative">
                                     <Input
                                         value={inputValue}
                                         onChange={(e) =>
@@ -146,8 +166,17 @@ const Chat = () => {
                                         type="text"
                                         className="flex-auto w-full"
                                         placeholder="Send text"
+                                        onKeyPress={handleKeyPress}
                                     />
 
+                                    <button
+                                        className="ml-3 mr-3"
+                                        onClick={() =>
+                                            setShowEmojiPicker(!showEmojiPicker)
+                                        }
+                                    >
+                                        <FaRegFaceSmile size={25} />
+                                    </button>
                                     <button
                                         className="ml-2"
                                         onClick={sendMessage}
