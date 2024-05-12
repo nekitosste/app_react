@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import io from "socket.io-client";
 import axiosClient from "./../axios-client";
 import Dialog from "../components/Dialog";
@@ -31,7 +31,7 @@ const Chat = () => {
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
     const [selectedDialog, setSelectedDialog] = useState(null);
 
-    const handleEmojiClick = (emoji) => {
+    const handleEmojiClick = (emoji: any) => {
         setInputValue(inputValue + emoji);
     };
 

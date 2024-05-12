@@ -7,7 +7,7 @@ const Profile = () => {
         <div className="container mx-auto py-8">
             <div className="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
                 <div className="col-span-4 sm:col-span-3">
-                    <div className="bg-neutral-950 shadow rounded-lg p-6">
+                    <div>
                         <div className="flex flex-col items-center">
                             <img
                                 src="https://randomuser.me/api/portraits/men/94.jpg"
@@ -38,7 +38,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="col-span-4 sm:col-span-9">
-                    <div className="bg-neutral-950 shadow rounded-lg p-6">
+                    <div className="">
                         <h2 className="text-xl font-bold mb-4">About Me</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing
