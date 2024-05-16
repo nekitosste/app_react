@@ -9,6 +9,20 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
         />
         <title>OnlyChat</title>
+        <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+        <script>
+            // Enable pusher logging - don't include this in production
+            Pusher.logToConsole = true;
+
+            var pusher = new Pusher("9ccbb4a07c3c4edd88b2", {
+                cluster: "ap3",
+            });
+
+            var channel = pusher.subscribe("my-channel");
+            channel.bind("my-event", function (data) {
+                alert(JSON.stringify(data));
+            });
+        </script>
     </head>
     <body>
         <div id="root"></div>

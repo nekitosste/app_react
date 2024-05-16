@@ -10,7 +10,7 @@ class ChatController extends Controller
     {
         $message = $request->input('message');
 
-        // Сохраняем сообщение в базу данных
+    
         Message::create(['message' => $message]);
     
         return response()->json(['success' => true]);

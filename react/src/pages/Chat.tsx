@@ -9,60 +9,69 @@ import { IoSendSharp } from "react-icons/io5";
 import MyMenu from "../components/MyMenu";
 import EmojiPicker from "emoji-picker-react";
 import { FaRegFaceSmile } from "react-icons/fa6";
-
-const socket = io("http://localhost:3001");
-
-const dialogs = [
-    { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
-    { id: 2, avatar: avatar, text: "helow", name: "Alex Alex" },
-    { id: 3, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
-    { id: 4, avatar: avatar, text: "helow", name: "Alex Alex" },
-    { id: 5, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
-    { id: 2, avatar: avatar, text: "helow", name: "Alex Alex" },
-    { id: 7, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
-    { id: 8, avatar: avatar, text: "helow", name: "Alex Alex" },
-    { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
-    { id: 2, avatar: avatar, text: "helow", name: "Alex Alex" },
-    { id: 1, avatar: avatar, text: "nigger", name: "Nikita Nikita" },
-    { id: 2, avatar: avatar, text: "helow", name: "Alex Alex" },
-];
+import Pusher from "pusher-js";
+import Echo from "laravel-echo";
 
 const Chat = () => {
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
     const [selectedDialog, setSelectedDialog] = useState(null);
-
-    const handleEmojiClick = (emoji: any) => {
-        setInputValue(inputValue + emoji);
-    };
-
-    const handleDialogClick = (id) => {
-        setSelectedDialog(id);
-    };
+    const [users, setUsers] = useState([]);
     const [messages, setMessages] = useState([]);
     const [inputValue, setInputValue] = useState("");
-
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
-        socket.on("chat message", (msg) => {
-            setMessages([...messages, msg]);
+        window.Pusher = Pusher;
+        getUsers();
+        window.Echo = new Echo({
+            broadcaster: "pusher",
+            key: "9ccbb4a07c3c4edd88b2",
+            cluster: "ap3",
+            encrypted: true,
         });
-    }, [messages]);
+
+        if (selectedDialog) {
+            window.Echo.private(`chat.${selectedDialog}`).listen(
+                "MessageEvent",
+                (e) => {
+                    setMessages([...messages, e.message]);
+                }
+            );
+        }
+    }, [selectedDialog, messages]);
+
+    const handleDialogClick = (userId) => {
+        setSelectedDialog(userId);
+    };
 
     const sendMessage = () => {
-        socket.emit("chat message", inputValue);
-        setInputValue("");
-        axiosClient("/send-message", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ message: inputValue }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
+        window.Echo.private(`chat.${selectedDialog}`).whisper(
+            "client-message",
+            {
+                message: inputValue,
+            }
+        );
+
+        axiosClient
+            .post(`/send-message/${selectedDialog}`, { message: inputValue })
+            .then((response) => {
+                console.log(response.data);
             })
             .catch((error) => {
                 console.error("Error:", error);
+            });
+
+        setInputValue("");
+    };
+    const getUsers = () => {
+        setLoading(true);
+        axiosClient
+            .get("/users")
+            .then(({ data }) => {
+                setLoading(false);
+                setUsers(data.data);
+            })
+            .catch(() => {
+                setLoading(false);
             });
     };
     const handleKeyPress = (e) => {
@@ -70,10 +79,11 @@ const Chat = () => {
             sendMessage();
         }
     };
+
     return (
         <div>
             <div className="flex flex-col h-[100vh]">
-                <div className="bg-neutral-800  overflow-y-auto flex">
+                <div className="bg-neutral-800  overflow-y-auto flex h-[100vh]">
                     <div className="flex flex-col md:max-w-[380px]  w-full">
                         <div className="p-3 flex justify-between ">
                             <Input placeholder="Search Dialog" />
@@ -81,7 +91,7 @@ const Chat = () => {
                         </div>
 
                         <div className="mt-3 -[79vh] w-full min-w-[320px] overflow-auto">
-                            {dialogs.map((item) => (
+                            {users.map((item) => (
                                 <div
                                     key={item.id}
                                     className="hover:bg-neutral-700 cursor-pointer"

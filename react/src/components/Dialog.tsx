@@ -1,9 +1,11 @@
+import avatar from "../pages/user.png";
+
 const Dialog = ({ data }) => {
     return (
         <div className="flex mb-1  hover:bg-neutral-700">
             <div className="m-auto ml-2">
                 <img
-                    src={data.avatar}
+                    src={avatar}
                     alt="avatar"
                     width={75}
                     height={75}
