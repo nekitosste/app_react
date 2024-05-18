@@ -19,9 +19,11 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [inputValue, setInputValue] = useState("");
     const [loading, setLoading] = useState(false);
+
     useEffect(() => {
-        window.Pusher = Pusher;
         getUsers();
+        window.Pusher = Pusher;
+
         window.Echo = new Echo({
             broadcaster: "pusher",
             key: "9ccbb4a07c3c4edd88b2",
