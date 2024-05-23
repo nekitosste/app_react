@@ -4,7 +4,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\MessageController;
-
+use App\Http\Controllers\Api\MessagerController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +31,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/messages', [MessagerController::class, 'message']);
 
-Route::post('/send-message/{id}',[MessageController::class, 'sendPrivateMessage']);
